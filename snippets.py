@@ -24,7 +24,11 @@ def get(name, filename):
 	with open(filename, "r") as f:
 		reader = csv.reader(f)
 		logging.debug("Retrieving snippet from file")
-	return snippet
+		for row in reader:
+			if row[0] == name:
+				return row[1]
+		return "None found"
+	#return snippet
 
 def make_parser():
 	""" Construct the command line parser """
